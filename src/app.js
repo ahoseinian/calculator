@@ -53,6 +53,8 @@ class Calculator extends React.Component {
 }
 
 const numberArrays = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const operations = [".", "+", "-", "*", "/", "%"];
+
 function Buttons(props) {
   const handleClick = e => {
     const Value = e.target.value;
@@ -67,28 +69,20 @@ function Buttons(props) {
   return (
     <div>
       {numberArrays.map(x => (
-        <button onClick={handleClick} value={`${x}`}>
+        <button onClick={handleClick} value={`${x}`} key={x}>
           {x}
         </button>
       ))}
-      <button onClick={handleClick} value=".">
-        .
-      </button>
-      <button onClick={handleDisabled} disabled={props.disabled} value="+">
-        +
-      </button>
-      <button onClick={handleDisabled} disabled={props.disabled} value="-">
-        -
-      </button>
-      <button onClick={handleDisabled} disabled={props.disabled} value="*">
-        *
-      </button>
-      <button onClick={handleDisabled} disabled={props.disabled} value="/">
-        /
-      </button>
-      <button onClick={handleDisabled} disabled={props.disabled} value="%">
-        %
-      </button>
+      {operations.map(operator => (
+        <button
+          {...props}
+          onClick={handleClick}
+          value={`${operator}`}
+          key={operator}
+        >
+          {operator}
+        </button>
+      ))}
       <button onClick={props.handleResult} disabled={props.disabled}>
         =
       </button>
